@@ -1,7 +1,6 @@
-const key1 = '9778440955b323d1c4b2fb73818e08c5';
-const key2 = 'k_1876uf5m'
-const key3 = 'k_gzylax6m'
-const api_key = key3;
+import key from "./apikey";
+
+const api_key = key.key2;
 const imgUri = 'https://image.tmdb.org/t/p/original';
 
 
@@ -35,7 +34,7 @@ async function getDetail(imdbId) {
 
 //* Get banner with other API
 async function getTrending() {
-	const url = `https://api.themoviedb.org/3/trending/all/week?api_key=${key1}`
+	const url = `https://api.themoviedb.org/3/trending/all/week?api_key=${key.key1}`
 	const res = await fetch(url);
 	const data = await res.json()
 
