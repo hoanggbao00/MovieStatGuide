@@ -57,7 +57,7 @@ export default function SettingPage({ navigation }) {
 	};
 
 	const gitHubHandle = () => {
-		const url = 'https://github.com/hoanggbao00/MovieStatMobile';
+		const url = 'https://github.com/hoanggbao00/MovieStatGuide';
 
 		openUrl(url);
 	};
