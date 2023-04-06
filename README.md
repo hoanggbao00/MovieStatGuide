@@ -4,15 +4,15 @@
 ## Screenshots
 
 <div align="center" style="width:100%;display:flex;justify-content:space-between;">
-<img width="32%" src="https://github.com/hoanggbao00/MovieStatGuide/tree/master/screenshot/Home.png" align="center" alt="screenshot" />
-<img width="32%" src="https://github.com/hoanggbao00/MovieStatGuide/tree/master/screenshot/Search.png" align="center" alt="screenshot" />
-<img width="32%" src="https://github.com/hoanggbao00/MovieStatGuide/tree/master/screenshot/Favorite.png" align="center" alt="screenshot" />
+<img width="32%" src="https://github.com/hoanggbao00/MovieStatGuide/blob/master/screenshot/Home.png" align="center" alt="screenshot" />
+<img width="32%" src="https://github.com/hoanggbao00/MovieStatGuide/blob/master/screenshot/Search.png" align="center" alt="screenshot" />
+<img width="32%" src="https://github.com/hoanggbao00/MovieStatGuide/blob/master/screenshot/Favorite.png" align="center" alt="screenshot" />
 </div>
 <p> </p>
 <div align="center" style="width:100%;display:flex;justify-content:space-between;">
-<img width="32%" src="https://github.com/hoanggbao00/MovieStatGuide/tree/master/screenshot/Setting.png" align="center" alt="screenshot" />
-<img width="32%" src="https://github.com/hoanggbao00/MovieStatGuide/tree/master/screenshot/Detail.png" align="center" alt="screenshot" />
-<img width="32%" src="https://github.com/hoanggbao00/MovieStatGuide/tree/master/screenshot/Login.png" align="center" alt="screenshot" />
+<img width="32%" src="https://github.com/hoanggbao00/MovieStatGuide/blob/master/screenshot/Setting.png" align="center" alt="screenshot" />
+<img width="32%" src="https://github.com/hoanggbao00/MovieStatGuide/blob/master/screenshot/Detail.png" align="center" alt="screenshot" />
+<img width="32%" src="https://github.com/hoanggbao00/MovieStatGuide/blob/master/screenshot/Login.png" align="center" alt="screenshot" />
 </div>
 
 ## Getting Started 
