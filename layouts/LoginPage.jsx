@@ -9,11 +9,12 @@ import {
 } from 'react-native';
 import React from 'react';
 import colors from '../ultis/Colors';
-
+import { useTranslation } from 'react-i18next';
 
 export default function LoginPage({ navigation }) {
+	const {t} = useTranslation()
+
 	const onContinue = () => {
-		// console.log('hello');
 		navigation.navigate('main');
 	};
 	return (
@@ -21,27 +22,27 @@ export default function LoginPage({ navigation }) {
       <Image style={styles.logoView} source={require('../assets/images/logo.png')}/>
 			<TextInput
 				style={styles.inputView}
-				placeholder="Username"
+				placeholder={t('username')}
 				placeholderTextColor={'grey'}
 			/>
 			<TextInput
 				style={styles.inputView}
-				placeholder="Password"
+				placeholder={t('password')}
 				placeholderTextColor={'grey'}
 			/>
 			<View style={styles.loginBtn}>
-				<Text style={styles.loginText}>Login</Text>
+				<Text style={styles.loginText}>{t('login')}</Text>
 			</View>
 			<View style={styles.signUpView}>
 				<Text style={{ color: 'grey', fontSize: 16 }}>
-					Don't have an account?{' '}
+				{t('donthaveaccount')} {' '}
 				</Text>
 				<View>
-					<Text style={styles.signUpText}>Sigup</Text>
+					<Text style={styles.signUpText}>{t('signup')}</Text>
 				</View>
 			</View>
       <TouchableOpacity style={styles.continueView} onPress={onContinue}>
-        <Text style={{color: colors.primaryColor, fontSize: 16}}>Continue using app without Login</Text>
+        <Text style={{color: colors.primaryColor, fontSize: 16}}>{t('continue')}</Text>
       </TouchableOpacity>
 		</View>
 	);

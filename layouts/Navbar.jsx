@@ -7,31 +7,34 @@ import SearchPage from './SearchPage';
 import FavoritePage from './FavoritePage';
 import SettingPage from './SettingPage';
 import Ionicons from '@expo/vector-icons/Ionicons';
-
+import { useTranslation } from 'react-i18next';
 
 export default function Navbar(props) {
+
+	const {t, i18n} = useTranslation()
+
 	const Tab = createBottomTabNavigator();
 
 	return (
 		<Tab.Navigator
 			screenOptions={({ route }) => ({
-				tabBarStyle: {backgroundColor: colors.darkColor, height: 70},
-				tabBarLabelStyle: {fontSize: 16},
+				tabBarStyle: { backgroundColor: colors.darkColor, height: 70 },
+				tabBarLabelStyle: { fontSize: 16 },
 				tabBarIcon: ({ focused, color }) => {
 					let iconName;
 
-					switch(route.name) {
-						case 'Home':
-							iconName = focused ? 'home' : 'home'
+					switch (route.name) {
+						case t('home'):
+							iconName = focused ? 'home' : 'home';
 							break;
-						case 'Search':
-							iconName = focused ? 'search' : 'search'
+						case t('search'):
+							iconName = focused ? 'search' : 'search';
 							break;
-						case 'Favorite':
-							iconName = focused ? 'bookmark' : 'bookmark'
+						case t('favorite'):
+							iconName = focused ? 'bookmark' : 'bookmark';
 							break;
-						case 'Setting':
-							iconName = focused ? 'settings' : 'settings'
+						case t('setting'):
+							iconName = focused ? 'settings' : 'settings';
 							break;
 					}
 
@@ -43,37 +46,31 @@ export default function Navbar(props) {
 			style={styles.navContainer}
 		>
 			<Tab.Screen
-				name="Home"
+				name={t('home')}
 				component={Homepage}
 				options={{
 					headerShown: false,
 				}}
 			/>
 			<Tab.Screen
-				name="Search"
+				name={t('search')}
 				component={SearchPage}
 				options={{
 					headerShown: false,
 				}}
 			/>
 			<Tab.Screen
-				name="Favorite"
+				name={t('favorite')}
 				component={FavoritePage}
 				options={{
 					headerShown: false,
 				}}
 			/>
 			<Tab.Screen
-				name="Setting"
+				name={t('setting')}
 				component={SettingPage}
-				options={{
-					headerShown: false,
-				}}
+				options={{ headerShown: false }}
 			/>
-			{/* <NavButton icon="home" active={active === 'Home' ? true : false} text="Home" /> */}
-			{/* <NavButton icon="search" active={active === 'Search' ? true : false} text="Search" />
-			<NavButton icon="bookmark" active={active === 'Favorite' ? true : false} text="Favorites" />
-			<NavButton icon="settings" active={active === 'Setting' ? true : false} text="Settings" /> */}
 		</Tab.Navigator>
 	);
 }

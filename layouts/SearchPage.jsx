@@ -4,6 +4,7 @@ import colors from '../ultis/Colors';
 import ListMovies from './ListMovies';
 import { getPopular, searchMovie } from '../ultis/data';
 import { getFakeMovie, getFakeSearchData } from '../ultis/fakedata';
+import { useTranslation } from 'react-i18next';
 
 const height = Dimensions.get('window').height
 
@@ -12,6 +13,7 @@ export default function SearchPage({ navigation }) {
 	const [query, setQuery] = useState('');
 	const [found, setFound] = useState();
 	const [popularData, setPopularData] = useState([]);
+	const {t} = useTranslation()
 	
 	useEffect(() => {
 		//! on Working ...
@@ -89,14 +91,14 @@ export default function SearchPage({ navigation }) {
 						<>
 							<View style={styles.listText}>
 								<Text style={styles.listTitle}>
-									Found {data.length} results match
+									{`${t('found')} ${data.length} ${t('match')}`}
 								</Text>
 								<Text
 									style={styles.searchValue}
 								>{` "${query}"`}</Text>
 							</View>
 							<ListMovies
-								title="Movies"
+								title={t('movies')}
 								dataList={data}
 								navigation={navigation}
 							/>
@@ -104,7 +106,7 @@ export default function SearchPage({ navigation }) {
 					) : ( //* if not found any results
 						<>
 							<View style={styles.listText}>
-								<Text style={styles.listTitle}>Not found any</Text>
+								<Text style={styles.listTitle}>{t('notfound')}</Text>
 								<Text style={styles.searchValue}>{` "${query}"`}</Text>
 							</View>
 						</>
@@ -112,7 +114,7 @@ export default function SearchPage({ navigation }) {
 				) : null}
 
 				<ListMovies
-					title="Popular Movies"
+					title={t('popularMovies')}
 					dataList={popularData || null}
 					navigation={navigation}
 				/>

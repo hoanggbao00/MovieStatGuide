@@ -3,13 +3,17 @@ import React, { useEffect, useState } from 'react';
 import colors from '../ultis/Colors';
 import GridMovies from './GridMovies';
 import { ScrollView } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
 
 export default function FavoritePage({ navigation }) {
+const {t} = useTranslation()
+
 
 	return (
 		<View style={styles.mainView}>
 			<View style={styles.header}>
-				<Text style={styles.text}>Favorite Movies</Text>
+				<Text style={styles.text}>{t('favoriteTitle')}</Text>
 			</View>
 			<ScrollView style={styles.scrollContainer}>
 				<GridMovies type="popular" navigation={navigation} more={false} />

@@ -4,6 +4,7 @@ import colors from '../ultis/Colors';
 import SettingItem from '../components/SettingItem';
 import ModalItem from '../components/ModaIteml';
 import { Linking } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 export default function SettingPage({ navigation }) {
 	const [modalVisible, setModalVisible] = useState({
@@ -14,6 +15,8 @@ export default function SettingPage({ navigation }) {
 	const onLogout = () => {
 		navigation.navigate('login');
 	};
+
+	const {t} = useTranslation();
 
 	const showModal = (modal) => {
 		if (modal === 'about')
@@ -29,7 +32,7 @@ export default function SettingPage({ navigation }) {
 	};
 
 	const developerModeHandle = () => {
-		ToastAndroid.show('Comming soon...', ToastAndroid.SHORT);
+		ToastAndroid.show(t('commingsoon'), ToastAndroid.SHORT);
 	};
 
 	const versionHandle = () => {
@@ -63,47 +66,47 @@ export default function SettingPage({ navigation }) {
 		
 		<ScrollView id="setting-page" style={styles.mainView}>
 			<View style={styles.header}>
-				<Text style={styles.headerText}>Settings</Text>
+				<Text style={styles.headerText}>{t('settingTitle')}</Text>
 			</View>
 			<ScrollView style={styles.mainContainer}>
 				<View style={{ height: '100%' }}>
 					<View style={styles.session}>
-						<Text style={styles.sessionText}>User</Text>
+						<Text style={styles.sessionText}>{t('userSection')}</Text>
 						<SettingItem
 							icon="log-in-outline"
-							name="Login"
+							name={t('login')}
 							pressEvent={onLogout}
 						/>
 						<SettingItem
 							icon="log-out-outline"
-							name="Logout"
+							name={t('logout')}
 							pressEvent={onLogout}
 						/>
 					</View>
 					<View style={styles.session}>
-						<Text style={styles.sessionText}>Application</Text>
+						<Text style={styles.sessionText}>{t('applicationSection')}</Text>
 						<SettingItem
 							icon="earth-outline"
-							name="Language"
+							name={t('language')}
 							pressEvent={languageHandle}
 						/>
-						<SettingItem icon="contrast-outline" name="Theme" />
+						<SettingItem icon="contrast-outline" name={t('theme')} />
 						<SettingItem
 							icon="code-outline"
-							name="Developer mode"
+							name={t('devmode')}
 							pressEvent={developerModeHandle}
 						/>
 					</View>
 					<View style={styles.session}>
-						<Text style={styles.sessionText}>About</Text>
+						<Text style={styles.sessionText}>{t('aboutSection')}</Text>
 						<SettingItem
 							icon="information"
-							name="About"
+							name={t('about')}
 							pressEvent={aboutHandle}
 						/>
 						<SettingItem
 							icon="phone-portrait-outline"
-							name="Version"
+							name={t('version')}
 							pressEvent={versionHandle}
 						/>
 						<SettingItem
@@ -126,7 +129,7 @@ export default function SettingPage({ navigation }) {
 				<ModalItem type={'version'} setState={setModalVisible} />
 			)}
 			{modalVisible.language === true && (
-				<ModalItem type={'language'} setState={setModalVisible} />
+				<ModalItem type={'language'} setState={setModalVisible}/>
 			)}
 		</ScrollView>
 	);

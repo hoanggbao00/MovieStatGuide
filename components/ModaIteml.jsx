@@ -10,7 +10,6 @@ import {
 import React, { useState } from 'react';
 
 import {
-	Col,
 	Row,
 	Rows,
 	Table,
@@ -18,13 +17,23 @@ import {
 } from 'react-native-table-component';
 import colors from '../ultis/Colors';
 import { RadioButton } from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
+import { ToastAndroid } from 'react-native';
 
 export default function ModalItem({ type, setState }) {
 	const [modalVisible, setModalVisible] = useState(true);
-	const [checked, setChecked] = useState('English');
+	const { t, i18n } = useTranslation();
+	const [checked, setChecked] = useState(i18n.language);
+
+	const changeLanguage = (language) => {
+		if (checked === language) return;
+		setChecked(language);
+		i18n.changeLanguage(language);
+		ToastAndroid.show(t('switchLanguage'), ToastAndroid.SHORT);
+	};
+
 	const member = {
-		tableHead: ['', 'MSV', 'Họ và tên'],
-		tableTitle: [1, 2, 3, 4, 5, 6],
+		tableHead: ['MSV', t('fullname')],
 		tableData: [
 			['20201404', 'Đinh Ngọc Anh'],
 			['20200830', 'Hoàng Kim Phượng'],
@@ -48,12 +57,20 @@ export default function ModalItem({ type, setState }) {
 				<View style={styles.modalView}>
 					{type === 'about' && (
 						<>
-							<View style={styles.centerdView}>
+							<View
+								style={{
+									justifyContent: 'center',
+									alignItems: 'center',
+									width: '100%',
+								}}
+							>
 								<Text style={styles.heading2}>EAUT</Text>
 								<Text style={styles.heading2}>CNTT11.10.05</Text>
 								<Text style={styles.heading2}>Nhóm 5</Text>
 							</View>
-							<Text style={styles.heading}>DANH SÁCH THÀNH VIÊN</Text>
+							<View style={styles.divider}></View>
+
+							<Text style={styles.heading}>{t('members')}</Text>
 							<View style={styles.divider}></View>
 							<Table
 								style={styles.wrapper}
@@ -63,15 +80,9 @@ export default function ModalItem({ type, setState }) {
 									style={styles.head}
 									data={member.tableHead}
 									textStyle={styles.tableText}
-									flexArr={[1, 2, 3]}
+									flexArr={[1, 2]}
 								/>
 								<TableWrapper style={{ flexDirection: 'row' }}>
-									<Col
-										style={styles.stt}
-										data={member.tableTitle}
-										heightArr={[28, 28]}
-										textStyle={styles.tableText}
-									/>
 									<Rows
 										style={styles.row}
 										data={member.tableData}
@@ -84,7 +95,7 @@ export default function ModalItem({ type, setState }) {
 					)}
 					{type === 'version' && (
 						<>
-							<Text style={styles.heading}>VERSION</Text>
+							<Text style={styles.heading}>{t('version')}</Text>
 							<View style={styles2.row}>
 								<Text style={styles2.title}>App: </Text>
 								<Text style={styles2.text}>
@@ -107,33 +118,38 @@ export default function ModalItem({ type, setState }) {
 						<>
 							<Text style={styles.heading}>LANGUAGE</Text>
 
-							<RadioButton.Group
-								onValueChange={(newValue) => setChecked(newValue)}
-								value={checked}
+							<TouchableOpacity
+								style={{
+									width: '40%',
+									flexDirection: 'row',
+									alignItems: 'center',
+									justifyContent: 'space-between',
+								}}
+								onPress={() => changeLanguage('en')}
 							>
-								<TouchableOpacity
-									style={{
-										flexDirection: 'row',
-										alignItems: 'center',
-										justifyContent: 'space-between',
-									}}
-									onPress={() => setChecked('English')}
-								>
-									<Text style={{fontSize: 16}}>English</Text>
-									<RadioButton.Android value="English" />
-								</TouchableOpacity>
-								<TouchableOpacity
-									style={{
-										flexDirection: 'row',
-										alignItems: 'center',
-										justifyContent: 'space-between',
-									}}
-									onPress={() => setChecked('Vietnamese')}
-								>
-									<Text style={{fontSize: 16}}>Tiếng Việt</Text>
-									<RadioButton.Android value="Vietnamese" />
-								</TouchableOpacity>
-							</RadioButton.Group>
+								<Text style={{ fontSize: 16 }}>English</Text>
+								<RadioButton.Android
+									value="en"
+									status={checked === 'en' ? 'checked' : 'unchecked'}
+									onPress={() => changeLanguage('en')}
+								/>
+							</TouchableOpacity>
+							<TouchableOpacity
+								style={{
+									width: '40%',
+									flexDirection: 'row',
+									alignItems: 'center',
+									justifyContent: 'space-between',
+								}}
+								onPress={() => changeLanguage('vi')}
+							>
+								<Text style={{ fontSize: 16 }}>Tiếng Việt</Text>
+								<RadioButton.Android
+									value="vi"
+									status={checked === 'vi' ? 'checked' : 'unchecked'}
+									onPress={() => changeLanguage('vi')}
+								/>
+							</TouchableOpacity>
 						</>
 					)}
 					<Pressable
@@ -143,7 +159,7 @@ export default function ModalItem({ type, setState }) {
 							setState({ about: false, version: false, language: false });
 						}}
 					>
-						<Text style={styles.textButton}>Close</Text>
+						<Text style={styles.textButton}>{t('close')}</Text>
 					</Pressable>
 				</View>
 			</View>
@@ -184,7 +200,13 @@ const styles = StyleSheet.create({
 	},
 	heading: { fontWeight: 'bold', fontSize: 20, paddingVertical: 10 },
 	heading2: { fontWeight: 'bold', fontSize: 18, paddingVertical: 5 },
-	divider: { backgroundColor: '#000', height: 2, width: '100%' },
+	divider: {
+		backgroundColor: '#000',
+		height: 2,
+		width: '100%',
+		marginTop: 5,
+		marginBottom: 5,
+	},
 	head: { height: 40, backgroundColor: '#f1f8ff' },
 	row: {
 		height: 28,

@@ -5,14 +5,20 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { getFakeDetail } from '../ultis/fakedata';
 import { ScrollView } from 'react-native';
 import { Dimensions } from 'react-native';
+import { Linking } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
 
 const width = Dimensions.get('window').width
-const height = Dimensions.get('window').height
 
 export default function MovieDetail(props) {
+
 	// const { route } = props;
 	// const { movieData } = route.params;
+	const {t} = useTranslation()
+
 	const movieData = getFakeDetail;
+
 	return (
 		<View style={styles.mainView}>
 			<Image
@@ -28,25 +34,25 @@ export default function MovieDetail(props) {
 					{movieData.title || movieData.name}
 				</Text>
 				<Text style={styles.movieVote}>
-					Rating:{' '}
-					{`${movieData.imDbRating} (${movieData.imDbRatingVotes} vote)`}
+					{t('rating')}:
+					{` ${movieData.imDbRating} (${movieData.imDbRatingVotes} ${t('vote')})`}
 				</Text>
 				<View style={styles.infoView}>
 					<Text style={styles.divider}></Text>
 					<View style={styles.textInfo}>
-						<Text style={styles.infoTitle}>Release date:</Text>
+						<Text style={styles.infoTitle}>{t('releasedate')}:</Text>
 						<Text style={styles.infoContent}>
 							{movieData.releaseDate || movieData.first_air_date}
 						</Text>
 					</View>
 					<View style={styles.textInfo}>
-						<Text style={styles.infoTitle}>Description:</Text>
+						<Text style={styles.infoTitle}>{t('description')}:</Text>
 						<Text style={{ ...styles.infoContent, ...styles.moviePlot }}>
 							{movieData.plot}
 						</Text>
 					</View>
 					<View style={styles.actorView}>
-						<Text style={styles.infoTitle}>Actor</Text>
+						<Text style={styles.infoTitle}>{t('actor')}</Text>
 						<ScrollView
 							contentContainerStyle={{justifyContent: 'center'}}
 							horizontal={true}
@@ -63,6 +69,16 @@ export default function MovieDetail(props) {
 							))}
 						</ScrollView>
 					</View>
+					<TouchableOpacity onPress={async () => {
+						const url = `https://www.imdb.com/title/${movieData.id}/`
+						const supported = await Linking.canOpenURL(url)
+						if (supported) return Linking.openURL(url);
+						Alert.alert(`Don't know how to open this URL: ${url}`);
+					}}
+						style={{width: '100%', justifyContent: 'center', paddingVertical: 10, backgroundColor: colors.primaryColor, marginTop: 10}}
+					>
+						<Text style={{color: 'white', fontSize: 16, textAlign: 'center'}}>{t('opendetail')}</Text>
+					</TouchableOpacity>
 				</View>
 			</View>
 		</View>
@@ -116,12 +132,13 @@ const styles = StyleSheet.create({
 		width: '100%',
 		height: 2,
 		backgroundColor: '#fff',
+		marginBottom: 5,
+		marginTop: 5
 	},
 	infoView: {
 		position: 'absolute',
-		top: 90,
+		top: 80,
 		left: 0,
-		gap: 10,
 		padding: 10
 	},
 	textInfo: {
@@ -131,6 +148,7 @@ const styles = StyleSheet.create({
 		color: '#42b883',
 		width: 90,
 		fontWeight: 'bold',
+		marginBottom: 10
 	},
 	infoContent: {
 		color: '#fff',

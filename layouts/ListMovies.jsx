@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, StyleSheet  } from 'react-native';
 import React, { useState } from 'react';
 import ListItem from '../components/ListItem';
+import { useTranslation } from 'react-i18next';
 
 export default function ListMovies({ title, dataList, navigation }) {
 	const [page, setPage] = useState(1);
@@ -11,6 +12,7 @@ export default function ListMovies({ title, dataList, navigation }) {
 		if(page * ITEMSHOW >= dataList.length) return setMore(false)
 		setPage(page + 1);
 	};
+	const {t} = useTranslation()
 
 	return (
 		<View style={styles.listMovies}>
@@ -27,7 +29,7 @@ export default function ListMovies({ title, dataList, navigation }) {
 			{(more && !(page*ITEMSHOW >= dataList.length)) && (
 				<TouchableOpacity onPress={showMore}>
 					<Text style={{ textAlign: 'center', fontSize: 16, color: '#fff' }}>
-						{`Show more (${page*ITEMSHOW}/${dataList.length} result)`}
+						{`${t('listMore')} (${page*ITEMSHOW}/${dataList.length} ${t('result')})`}
 					</Text>
 				</TouchableOpacity>
 			)}

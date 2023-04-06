@@ -10,17 +10,20 @@ import colors from '../ultis/Colors';
 import MovieCard from '../components/MovieCard';
 import { getPopularMovies, getPopularTVS } from '../ultis/data';
 import { getFakeMovie, getFakeTV } from '../ultis/fakedata';
+import { useTranslation } from 'react-i18next';
+
 
 export default function GridMovies({ type, navigation, more = true }) {
 	const [data, setData] = useState([]);
 	const [page, setPage] = useState(1);
+	const {t} = useTranslation()
 	const category = {
 		popular: {
-			title: 'Popular Movies',
+			title: t('popularMovies'),
 			data: () => getFakeMovie(),
 		},
 		tv_shows: {
-			title: 'TV Shows',
+			title: t('tvShow'),
 			data: () => getFakeTV(),
 		},
 	};
@@ -64,11 +67,11 @@ export default function GridMovies({ type, navigation, more = true }) {
 						}}
 						style={styles.moreButton}
 					>
-						<Text style={styles.moreText}>More</Text>
+						<Text style={styles.moreText}>{t('gridMore')}</Text>
 					</TouchableOpacity>
 				) : null}
 			</View>
-			<Text style={styles.pageText}>Page: {page}/5</Text>
+			<Text style={styles.pageText}>{`${t('page')}: ${page}/5`}</Text>
 		</ScrollView>
 	);
 }
