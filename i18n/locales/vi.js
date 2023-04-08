@@ -42,5 +42,7 @@ export default {
   'rating': 'Lượt đánh giá',
   'vote': 'đánh giá',
   'opendetail': 'Xem chi tiết tại website',
-  'donthaveaccount': 'Không có tài khoản?'
+  'donthaveaccount': 'Không có tài khoản?',
+  'emptyfavorite': 'Bạn chưa thêm gì vào phim yêu thích',
+  'removeall': 'Xóa hết'
 }};

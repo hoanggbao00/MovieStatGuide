@@ -11,31 +11,12 @@ import MovieCard from '../components/MovieCard';
 import { getPopularMovies, getPopularTVS } from '../ultis/data';
 import { getFakeMovie, getFakeTV } from '../ultis/fakedata';
 import { useTranslation } from 'react-i18next';
+import { getFavorite } from '../ultis/AsyncStorage';
 
 
-export default function GridMovies({ type, navigation, more = true }) {
-	const [data, setData] = useState([]);
+export default function GridMovies({ data, navigation}) {
 	const [page, setPage] = useState(1);
 	const {t} = useTranslation()
-	const category = {
-		popular: {
-			title: t('popularMovies'),
-			data: () => getFakeMovie(),
-		},
-		tv_shows: {
-			title: t('tvShow'),
-			data: () => getFakeTV(),
-		},
-	};
-	useEffect(() => {
-		try {
-			category[type].data().then((result) => {
-				setData(result.items);
-			});
-		} catch (err) {
-			console.log(err);
-		}
-	}, []);
 
 	const onMoreclick = () => {
 		if (page === 5) return;
@@ -44,13 +25,12 @@ export default function GridMovies({ type, navigation, more = true }) {
 
 	return (
 		<ScrollView style={styles.scrollView}>
-			<Text style={styles.gridTitle}>{category[type].title}</Text>
+			<Text style={styles.gridTitle}>{data.title}</Text>
 			<View id="grid-movies" style={styles.grid}>
 				{data
-					? data.map((movie, index) => {
+					? data.items.map((movie, index) => {
 						if(index >= (page * 20 - 1)) return
 							return (
-								// <Text>{movie.id}</Text>
 								<MovieCard
 									key={movie.id}
 									data={movie}
@@ -60,7 +40,7 @@ export default function GridMovies({ type, navigation, more = true }) {
 							);
 					  })
 					: null}
-				{more === true && page !== 5 ? (
+				{data.items.length > 19 && page !== 5 ? (
 					<TouchableOpacity
 						onPress={() => {
 							onMoreclick();

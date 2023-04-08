@@ -9,18 +9,14 @@ import { getDetail } from '../ultis/data';
 export default function MovieCard({data, navigation}) {
 
 	const toDetail = () => {
-		if(!navigation) return
 		if (!data) return
-		//! uncomment to use API
-		//getDetail(data.id).then(data => {
 			navigation.navigate('detail', {
 				movieData: data,
-				headerTitle: data.title || data.name
+				headerTitle: data.title || data.name,
+				movie: data,
+				isFavorite: true
 			})
-		//})
 	}
-	
-
 	
   return (
     <Pressable style={styles.card} onPress={() => toDetail()}>

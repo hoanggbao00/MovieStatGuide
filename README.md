@@ -12,7 +12,7 @@
 <div align="center" style="width:100%;display:flex;justify-content:space-between;">
 <img width="32%" src="https://github.com/hoanggbao00/MovieStatGuide/blob/master/screenshot/Setting.png" align="center" alt="screenshot" />
 <img width="32%" src="https://github.com/hoanggbao00/MovieStatGuide/blob/master/screenshot/Detail.png" align="center" alt="screenshot" />
-<img width="32%" src="https://github.com/hoanggbao00/MovieStatGuide/blob/master/screenshot/Login.png" align="center" alt="screenshot" />
+<img width="32%" src="https://github.com/hoanggbao00/MovieStatGuide/blob/master/screenshot/AboutUs.png" align="center" alt="screenshot" />
 </div>
 
 ## Getting Started 

@@ -42,6 +42,9 @@ export default {
   'rating': 'Vote',
   'vote': 'vote',
   'opendetail': 'Open detail on website',
-  'donthaveaccount': 'Don\'t have an account?'
+  'donthaveaccount': 'Don\'t have an account?',
+  'emptyfavorite': 'Nothing in your Favorite',
+  'removeall': 'Remove All'
+
   }
 };

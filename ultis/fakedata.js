@@ -2607,7 +2607,7 @@ const tvData = {
 	],
 };
 
-const getFakeDetail = {
+const fakeDetail = {
 	id: 'tt10366206',
 	title: 'John Wick: Chapter 4',
 	originalTitle: '',
@@ -3992,6 +3992,13 @@ const getFakeSearchData = (query) =>
 	new Promise((resolve, reject) => {
 		setTimeout(() => {
 			return resolve(searchData);
+		}, 500);
+	});
+
+	const getFakeDetail = () =>
+	new Promise((resolve, reject) => {
+		setTimeout(() => {
+			return resolve(fakeDetail);
 		}, 500);
 	});
 
