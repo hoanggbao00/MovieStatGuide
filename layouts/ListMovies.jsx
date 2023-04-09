@@ -26,10 +26,17 @@ export default function ListMovies({ title, dataList, navigation }) {
 						return <ListItem key={movie.id} movie={movie} navigation={navigation} />;
 					})}
 			</View>
-			{(more && !(page*ITEMSHOW >= dataList.length)) && (
+			{(!(page*ITEMSHOW >= dataList.length)) ? 
+			(
 				<TouchableOpacity onPress={showMore}>
 					<Text style={{ textAlign: 'center', fontSize: 16, color: '#fff' }}>
 						{`${t('listMore')} (${page*ITEMSHOW}/${dataList.length} ${t('result')})`}
+					</Text>
+				</TouchableOpacity>
+			) : (
+				<TouchableOpacity>
+					<Text style={{ textAlign: 'center', fontSize: 16, color: '#fff' }}>
+						{`${dataList.length} ${t('result')}`}
 					</Text>
 				</TouchableOpacity>
 			)}

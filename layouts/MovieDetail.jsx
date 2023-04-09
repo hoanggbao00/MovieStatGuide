@@ -1,13 +1,12 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import colors from '../ultis/Colors';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { getFakeDetail } from '../ultis/fakedata';
+import Icon from'react-native-vector-icons/Ionicons';
 import { ScrollView } from 'react-native';
 import { Dimensions } from 'react-native';
 import { Linking } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { clearFavorite, getFavorite } from '../ultis/AsyncStorage';
+import { getFavorite } from '../ultis/AsyncStorage';
 import { ToastAndroid } from 'react-native';
 import { storageFavorite } from '../ultis/AsyncStorage';
 import { getDetail } from '../ultis/data';
@@ -50,7 +49,7 @@ export default function MovieDetail(props) {
 			},
 			headerTintColor: colors.secondaryColor,
 			headerLeft: () => (
-				<Ionicons
+				<Icon
 					name="chevron-back-outline"
 					size={30}
 					color={colors.secondaryColor}
@@ -63,7 +62,7 @@ export default function MovieDetail(props) {
 				if (favoriteState) iconName = 'bookmark';
 				else iconName = 'bookmark-outline';
 				return (
-					<Ionicons
+					<Icon
 						name={iconName}
 						size={30}
 						color="#ffffff"
@@ -114,7 +113,7 @@ export default function MovieDetail(props) {
 
 	return (
 		<View style={styles.mainView}>
-			{Object.keys(movieData).length !== 0 && (
+			{Object.keys(movieData).length !== 0 ? movieData ? (
 				<>
 					<Image
 						style={styles.bannerImage}
@@ -190,7 +189,7 @@ export default function MovieDetail(props) {
 						</View>
 					</View>
 				</>
-			)}
+			) : null : null}
 		</View>
 	);
 }

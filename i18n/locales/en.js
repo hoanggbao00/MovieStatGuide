@@ -44,7 +44,8 @@ export default {
   'opendetail': 'Open detail on website',
   'donthaveaccount': 'Don\'t have an account?',
   'emptyfavorite': 'Nothing in your Favorite',
-  'removeall': 'Remove All'
-
+  'removeall': 'Remove All',
+  'loginmessage': 'This function is in development, stay focus',
+  'searching': 'Searching for',
   }
 };

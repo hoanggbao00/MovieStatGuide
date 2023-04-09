@@ -1,5 +1,25 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const storageItem = async (key, value) => {
+  try {
+    await AsyncStorage.setItem(key, JSON.stringify(value))
+    return 1;
+  } catch (e) {
+    console.log(e);
+    return 0;
+  }
+}
+
+const getStoragedItem = async (key) => {
+  try {
+    const res = JSON.parse(await AsyncStorage.getItem(key))
+    return res
+  } catch (error) {
+   console.log(error);
+   return 0;
+  }
+};
+
 const storageFavorite = async (value) => {
   try {
     await AsyncStorage.setItem('favorite', JSON.stringify(value))
@@ -30,4 +50,4 @@ const clearFavorite = async () => {
   }
 }
 
-export {storageFavorite, getFavorite, clearFavorite}
+export {storageFavorite, getFavorite, clearFavorite, getStoragedItem, storageItem}

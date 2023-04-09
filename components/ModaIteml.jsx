@@ -127,7 +127,7 @@ export default function ModalItem({ type, setState }) {
 								}}
 								onPress={() => changeLanguage('en')}
 							>
-								<Text style={{ fontSize: 16 }}>English</Text>
+								<Text style={{ fontSize: 16, color: 'black' }}>English</Text>
 								<RadioButton.Android
 									value="en"
 									status={checked === 'en' ? 'checked' : 'unchecked'}
@@ -143,7 +143,7 @@ export default function ModalItem({ type, setState }) {
 								}}
 								onPress={() => changeLanguage('vi')}
 							>
-								<Text style={{ fontSize: 16 }}>Tiếng Việt</Text>
+								<Text style={{ fontSize: 16, color: 'black' }}>Tiếng Việt</Text>
 								<RadioButton.Android
 									value="vi"
 									status={checked === 'vi' ? 'checked' : 'unchecked'}
@@ -198,8 +198,8 @@ const styles = StyleSheet.create({
 		elevation: 5,
 		width: '100%',
 	},
-	heading: { fontWeight: 'bold', fontSize: 20, paddingVertical: 10 },
-	heading2: { fontWeight: 'bold', fontSize: 18, paddingVertical: 5 },
+	heading: { fontWeight: 'bold', fontSize: 20, paddingVertical: 10 , color: 'black'},
+	heading2: { fontWeight: 'bold', fontSize: 18, paddingVertical: 5 , color: 'black'},
 	divider: {
 		backgroundColor: '#000',
 		height: 2,
@@ -214,6 +214,7 @@ const styles = StyleSheet.create({
 	},
 	tableText: {
 		textAlign: 'center',
+		color: 'black'
 	},
 	button: {
 		borderRadius: 20,
@@ -242,10 +243,12 @@ const styles2 = StyleSheet.create({
 		marginTop: 10,
 	},
 	title: {
-		fontWeight: 'bold',
+		fontWeight: '800',
 		fontSize: 18,
+		color: 'black'
 	},
 	text: {
 		fontSize: 18,
+		color: 'black'
 	},
 });

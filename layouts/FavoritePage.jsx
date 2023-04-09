@@ -36,14 +36,14 @@ export default function FavoritePage({ navigation }) {
 				<Text style={styles.text}>{t('favoriteTitle')}</Text>
 			</View>
 			<ScrollView style={styles.scrollContainer}>
-				{Object.keys(data).length !== 0 ? (
+				{Object.keys(data).length !== 0 ? data.items ? (
 					<>
 						<GridMovies data={data} navigation={navigation} more={false} />
 						<Button title={t('removeall')} style={{backgroundColor: colors.primaryColor, color: '#fff'}} onPress={removeAllHandle}/>
 					</>
 				) : (
 					<Text style={{color: '#fff', fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>{t('emptyfavorite')}</Text>
-				)}
+				) : null}
 			</ScrollView>
 		</View>
 	);

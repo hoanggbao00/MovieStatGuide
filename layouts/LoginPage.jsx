@@ -5,15 +5,21 @@ import {
 	TouchableOpacity,
 	TextInput,
   Image,
-	Pressable
+	ToastAndroid,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import colors from '../ultis/Colors';
 import { useTranslation } from 'react-i18next';
 
 export default function LoginPage({ navigation }) {
 	const {t} = useTranslation()
 
+	useEffect(() => {
+		const unsubscribe = navigation.addListener('focus', () => {
+			ToastAndroid.show(t('loginmessage'), ToastAndroid.LONG)
+		})
+		return unsubscribe
+	})
 	const onContinue = () => {
 		navigation.navigate('main');
 	};

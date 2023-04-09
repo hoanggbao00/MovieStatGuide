@@ -44,7 +44,7 @@ export default function MovieCard({data, navigation}) {
 
 const styles = StyleSheet.create({
 	card: {
-		width: '30%',
+		width: '28%',
 		height: 165,
 		backgroundColor: colors.primaryColor,
 		borderRadius: 10,
@@ -56,9 +56,9 @@ const styles = StyleSheet.create({
 	},
 	movieName: {
 		fontSize: 12,
-		fontWeight: 'bold',
-		paddingLeft: 5,
-		paddingRight: 5,
+		paddingHorizontal: 5,
+		color: colors.secondaryColor,
+    fontFamily: 'Roboto',
 	},
 	movieYear: {
 		fontSize: 11,

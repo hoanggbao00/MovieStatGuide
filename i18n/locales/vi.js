@@ -44,5 +44,8 @@ export default {
   'opendetail': 'Xem chi tiết tại website',
   'donthaveaccount': 'Không có tài khoản?',
   'emptyfavorite': 'Bạn chưa thêm gì vào phim yêu thích',
-  'removeall': 'Xóa hết'
+  'removeall': 'Xóa hết',
+  'loginmessage': 'Chức năng này đang được phát triển',
+  'searching' : 'Đang tìm kiếm'
+
 }};

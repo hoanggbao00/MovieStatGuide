@@ -6,12 +6,13 @@ import Homepage from './Homepage';
 import SearchPage from './SearchPage';
 import FavoritePage from './FavoritePage';
 import SettingPage from './SettingPage';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTranslation } from 'react-i18next';
+import Icon from 'react-native-vector-icons/Ionicons'
+
 
 export default function Navbar(props) {
 
-	const {t, i18n} = useTranslation()
+	const {t} = useTranslation()
 
 	const Tab = createBottomTabNavigator();
 
@@ -38,7 +39,7 @@ export default function Navbar(props) {
 							break;
 					}
 
-					return <Ionicons name={iconName} size={30} color={color} />;
+					return <Icon name={iconName} size={30} color={color} />;
 				},
 				tabBarActiveTintColor: colors.secondaryColor,
 				tabBarInactiveTintColor: colors.primaryColor,

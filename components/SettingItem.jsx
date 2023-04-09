@@ -1,6 +1,6 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { StyleSheet, View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 export default function SettingItem({icon, name, pressEvent}) {
@@ -11,7 +11,7 @@ export default function SettingItem({icon, name, pressEvent}) {
 
 			pressEvent()
 		}}>
-			<Ionicons name={icon || "moon-outline"} size={30} color='white' />
+			<Icon name={icon || "moon-outline"} size={30} color='white' />
 			<Text style={styles.text}>{name || 'Settings Item'}</Text>
 		</TouchableOpacity>
 	);

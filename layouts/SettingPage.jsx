@@ -1,22 +1,33 @@
-import { View, Text, StyleSheet, ToastAndroid, ScrollView } from 'react-native';
+import {
+	View,
+	Text,
+	StyleSheet,
+	ToastAndroid,
+	ScrollView,
+	TouchableOpacity,
+} from 'react-native';
 import React, { useState } from 'react';
 import colors from '../ultis/Colors';
 import SettingItem from '../components/SettingItem';
 import ModalItem from '../components/ModaIteml';
 import { Linking } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { TextInput } from 'react-native';
+import { storageItem } from '../ultis/AsyncStorage';
 
 export default function SettingPage({ navigation }) {
+	const [api, setApi] = useState('')
 	const [modalVisible, setModalVisible] = useState({
 		about: false,
 		version: false,
 		language: false,
 	});
+	const [devMode, setDevMode] = useState(false);
 	const onLogout = () => {
 		navigation.navigate('login');
 	};
 
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 
 	const showModal = (modal) => {
 		if (modal === 'about')
@@ -32,8 +43,29 @@ export default function SettingPage({ navigation }) {
 	};
 
 	const developerModeHandle = () => {
-		ToastAndroid.show(t('commingsoon'), ToastAndroid.SHORT);
+		ToastAndroid.show('DEVOLOPER MODE', ToastAndroid.SHORT);
+		setDevMode(!devMode);
 	};
+
+	const apiChangeHandle = (e) => {
+		setApi(e)
+	}
+
+	const setAPI =() => {
+		const set = storageItem('@api', api)
+		ToastAndroid.show(`API changed to ${api}`, ToastAndroid.SHORT)
+	}
+
+	const resetAPI =() => {
+		const oldapi = 'k_gzylax6m'
+		const set = storageItem('@api', oldapi)
+		ToastAndroid.show(`API changed to k_gzylax6m`, ToastAndroid.SHORT)
+	} 
+
+	const themeHandle =() => {
+		
+		ToastAndroid.show(t('commingsoon'), ToastAndroid.SHORT)
+	} 
 
 	const versionHandle = () => {
 		showModal('version');
@@ -63,7 +95,6 @@ export default function SettingPage({ navigation }) {
 	};
 
 	return (
-		
 		<ScrollView id="setting-page" style={styles.mainView}>
 			<View style={styles.header}>
 				<Text style={styles.headerText}>{t('settingTitle')}</Text>
@@ -90,12 +121,48 @@ export default function SettingPage({ navigation }) {
 							name={t('language')}
 							pressEvent={languageHandle}
 						/>
-						<SettingItem icon="contrast-outline" name={t('theme')} />
+						<SettingItem icon="contrast-outline" name={t('theme')} pressEvent={themeHandle} />
 						<SettingItem
 							icon="code-outline"
 							name={t('devmode')}
 							pressEvent={developerModeHandle}
 						/>
+						{devMode && (
+							<View style={{ flexDirection: 'row', gap: 10 }}>
+								<TextInput
+									value={api}
+									placeholder="API KEY"
+									style={{ width: '70%' }}
+									onChangeText={apiChangeHandle}
+								/>
+								<TouchableOpacity
+									style={{
+										backgroundColor: colors.primaryColor,
+										paddingVertical: 10,
+										paddingHorizontal: 10,
+										justifyContent: 'center',
+										alignContent: 'center',
+										borderRadius: 10,
+									}}
+									onPress={setAPI}
+								>
+									<Text>SET</Text>
+								</TouchableOpacity>
+								<TouchableOpacity
+									style={{
+										backgroundColor: colors.primaryColor,
+										paddingVertical: 10,
+										paddingHorizontal: 10,
+										justifyContent: 'center',
+										alignContent: 'center',
+										borderRadius: 10,
+									}}
+									onPress={resetAPI}
+								>
+									<Text>RESET</Text>
+								</TouchableOpacity>
+							</View>
+						)}
 					</View>
 					<View style={styles.session}>
 						<Text style={styles.sessionText}>{t('aboutSection')}</Text>
@@ -129,7 +196,7 @@ export default function SettingPage({ navigation }) {
 				<ModalItem type={'version'} setState={setModalVisible} />
 			)}
 			{modalVisible.language === true && (
-				<ModalItem type={'language'} setState={setModalVisible}/>
+				<ModalItem type={'language'} setState={setModalVisible} />
 			)}
 		</ScrollView>
 	);
