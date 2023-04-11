@@ -40,31 +40,18 @@ export default function SearchPage({navigation}) {
   }, [navigation]);
 
   const handleSearch = async () => {
+    if(query.length === 0) return setFound(false)
     setIsLoading(true);
-    // // ! On working...
-    getFakeSearchData(query).then(res => {
-      if (
-        res.results.length === 0 ||
-        query === 'test:none' ||
-        query.length === 0
-      )
+    const res = searchMovie(query);
+    res.then(res => {
+      if (res.results.length === 0 || query === 'test:none')
         return setFound(false);
-      console.log(query);
       const temp = res.results.map(item => item);
       const filteredData = temp.filter(item => item.image !== '');
       setIsLoading(false);
       setData(filteredData);
       return setFound(true);
     });
-    // const res = searchMovie(query);
-    // res.then(res => {
-    //   if (res.results.length === 0 || query === 'test:none')
-    //     return setFound(false);
-    //   const temp = res.results.map(item => item);
-    //   const filteredData = temp.filter(item => item.image !== '');
-    //   setData(filteredData);
-    //   return setFound(true);
-    // });
   };
 
   const handleChange = e => {
